@@ -1,4 +1,4 @@
-NAME 	= Forms...
+NAME 	= ManyNames...
 CC 		= c++
 CFLAGS 	= -Wextra -Wall -Werror -std=c++98
 DEBUG 	= -g -fsanitize=address
@@ -7,7 +7,12 @@ DEBUG 	= -g -fsanitize=address
 RM = rm -rf
 
 # Source and object files
-SRC =	main.cpp Bureaucrat.cpp Form.cpp
+SRC =	main.cpp \
+		Bureaucrat.cpp \
+		AForm.cpp \
+		PresidentialPardonForm.cpp \
+		RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp
 OBJ	=	$(SRC:.cpp=.o)
 
 # Colors
