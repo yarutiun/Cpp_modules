@@ -107,4 +107,4 @@ void AForm::execute(Bureaucrat const & executor) const
         this->execute();
 }
 
-void AForm::execute() const{};
+void AForm::execute() const { };

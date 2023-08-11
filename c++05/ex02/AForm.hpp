@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 17:00:16 by yarutiun          #+#    #+#             */
-/*   Updated: 2023/08/10 14:58:23 by yarutiun         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:12:35 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class AForm
         int getRequiredGrade(void) const;
         int getRequiredExec(void) const;
         void execute(Bureaucrat const & executor) const;
-        virtual void execute() const;
+        virtual void execute() const = 0;
         class GradeTooHighException : public std::exception
         {
             public:
