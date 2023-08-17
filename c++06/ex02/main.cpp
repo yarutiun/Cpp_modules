@@ -6,7 +6,58 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:18:23 by yarutiun          #+#    #+#             */
-/*   Updated: 2023/08/17 18:18:27 by yarutiun         ###   ########.fr       */
+/*   Updated: 2023/08/17 20:57:05 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+
+Base::~Base()
+{
+    std::cout << "Destructor called" << std::endl;
+}
+
+Base *generate(void)
+{
+    srand(time(NULL));
+    int i = rand() % 3;
+    if(i == 0)
+    {
+        std::cout << "A was instanciated" << std::endl;
+        return(new A);
+    }
+    else if(i == 1)
+    {
+        std::cout << "B was instanciated" << std::endl;   
+        return(new B);
+    }
+    else if(i == 2)
+    {
+        std::cout << "C was instanciated" << std::endl;
+        return(new C);
+    }
+    return(NULL);
+}
+
+void	identify(Base* p) {
+
+	if (dynamic_cast<A *>(p))
+		std::cout << "Pointer is type A." << std::endl;
+	else if (dynamic_cast<B *>(p))
+		std::cout << "Pointer is type B." << std::endl;
+	else if (dynamic_cast<C *>(p))
+		std::cout << "Pointer is type C." << std::endl;
+	else
+		std::cout << "Cannot identify pointer type." << std::endl;
+
+}
+
+int main(void)
+{
+    Base *base = generate();
+    identify(base);
+    return(0);
+}
