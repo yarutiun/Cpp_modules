@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:18:23 by yarutiun          #+#    #+#             */
-/*   Updated: 2023/08/17 20:57:05 by yarutiun         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:40:46 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,43 @@ void	identify(Base* p) {
 
 }
 
+void identify(Base& p)
+{
+    try
+    {
+        A &a = dynamic_cast<A &>(p);
+        std::cout << "Pointer is type A." << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        try
+        {
+            B &b = dynamic_cast<B &>(p);
+            std::cout << "Pointer is type B." << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            try
+            {
+                C &c = dynamic_cast<C &>(p);
+                std::cout << "Pointer is type C." << std::endl;
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << "I have no Idea what is this shit" << std::endl;
+            }
+            
+        }
+           
+    }
+    
+}
+
 int main(void)
 {
+    // Base &xbase = generate();
     Base *base = generate();
     identify(base);
+    identify(*base);
     return(0);
 }
