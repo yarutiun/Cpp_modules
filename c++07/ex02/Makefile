@@ -7,7 +7,7 @@ DEBUG 	= -g -fsanitize=address
 RM = rm -rf
 
 # Source and object files
-SRC =	main.cpp
+SRC =	main.cpp Array.cpp
 OBJ	=	$(SRC:.cpp=.o)
 
 # Colors
