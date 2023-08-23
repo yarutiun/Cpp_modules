@@ -18,6 +18,7 @@ class Span{
         void addNumber(int num);
         int shortestSpan();
         int longestSpan();
+        void addManyNums(int flag);
 
         class toManyNums: public std::exception{
             public:

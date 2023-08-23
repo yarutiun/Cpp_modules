@@ -17,6 +17,26 @@ void Span::addNumber(int num)
     _vec.push_back(num);
 }
 
+void Span::addManyNums(int flag) // if flag is 0 - assign random numbers, if flag is 1 - assign number from 0 to _n
+{
+    if(flag != 1 && flag != 0)
+    {
+        std::cout << "flag 0 - assign random numbers, flag 1 - assign number from 0 to _n" << std::endl;
+        return;
+    }
+    srand(time(NULL));
+    if(flag == 0)
+    {
+        for(int i = 0; i < _n; i++)
+            _vec.push_back(rand());
+    }
+    if(flag == 1)
+    {
+        for(int i = 0; i < _n; i++)
+            _vec.push_back(i);
+    }
+}
+
 int Span::longestSpan()
 {
     if(_vec.size() <= 1)

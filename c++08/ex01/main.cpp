@@ -2,7 +2,8 @@
 
 int main(void)
 {
-    Span s(3);
+    Span s(667);
+    s.addManyNums(1);
     try
     {
     s.addNumber(1);
