@@ -2,7 +2,6 @@
 #define SPAN_HPP
 #include <iostream>
 #include <vector>
-// #include <bits/stdc++.h>
 #include <algorithm>
 
 class Span{

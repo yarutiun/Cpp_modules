@@ -2,18 +2,14 @@
 
 int main(void)
 {
-    Span s(667);
-    s.addManyNums(1);
-    try
-    {
-    s.addNumber(1);
-    s.addNumber(2);
+    Span s(5);
+    // s.addManyNums(1);
+    s.addNumber(9);
+    s.addNumber(11);
+    s.addNumber(17);
+    s.addNumber(6);
     s.addNumber(3);
-    }
-    catch(std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    std::cout << s.shortestSpan() << std::endl;
     std::cout << s.longestSpan() << std::endl;
     return(0);
 }

@@ -48,7 +48,18 @@ int Span::shortestSpan()
 {
     if(_vec.size() <= 1)
         throw notEnoughNums();
-        return(0); //needs implementation
+    std::sort(_vec.begin(), _vec.end());
+    int n = _vec[1] - _vec[0];
+    for(int i = 0; i < _vec.size(); i++)
+    {
+        for(int j = i+1; j < _vec.size(); j++)
+        {
+            // std::cout << "Comparing (_vec[j] - _vec[i]) " << _vec[j] << " - " << _vec[i] << " and " <<  _vec[j] << " - " << _vec[j+1] << std::endl;
+            if((_vec[j] - _vec[i]) < (_vec[j+1] - _vec[j]))
+                n = _vec[j] - _vec[i];
+        }
+    }
+        return(n);
 }
 
 Span::~Span()
