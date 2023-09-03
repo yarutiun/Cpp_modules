@@ -1,4 +1,4 @@
-NAME 	= Containers_wow
+NAME 	= RPN
 CC 		= c++
 CFLAGS 	= -Wextra -Wall -Werror -std=c++98
 DEBUG 	= -g -fsanitize=address
