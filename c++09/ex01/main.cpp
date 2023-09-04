@@ -15,7 +15,14 @@ int performOperation(char op, int a, int b) {
         case '+': return a + b;
         case '-': return a - b;
         case '*': return a * b;
-        case '/': return a / b;
+        case '/':
+        if(b == 0)
+        {
+            std::cout << "Can't devide by 0" << std::endl;
+            exit(1);
+        }
+        else
+            return(a / b);
         default: return 0; 
     }
 }
