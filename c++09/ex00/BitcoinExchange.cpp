@@ -16,13 +16,11 @@ const BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bx)
 
 void BitcoinExchange::readFromBase(std::map<std::string, double> &bitc)
 {
-    int i = 0;
-    int flag = 0;
     std::ifstream baseFile("data.csv");
     if (!baseFile.is_open())
     {
-        std::cerr << "Failed to open the file." << std::endl;
-        return ;
+        std::cerr << "Failed to open the Database file." << std::endl;
+        exit(EXIT_FAILURE);
     }
     std::string line;
     std::getline(baseFile, line);
@@ -31,28 +29,47 @@ void BitcoinExchange::readFromBase(std::map<std::string, double> &bitc)
             // bitc.insert(std::pair<std::string, double>(line.substr(0, 10), std::stod(line.substr(12, (line.length() - 11)))));
         // std::cout << line << std::endl;
         size_t pos = line.find(",");
-        if (pos != std::string::npos) {
+        if (pos != std::string::npos)
+        {
             std::string date = line.substr(0, pos);
             double value = std::stod(line.substr(pos + 1));
-
-            // Insert the date-value pair into the map.
             bitc[date] = value;
-    }
+        }
     }
     baseFile.close();
 }
 
-// std::map<std::string, int> BitcoinExchange::getMap(void)
+// void BitcoinExchange::readFromInput(std::map<std::string, double> &input)
 // {
-//     return(_bitcoin);
+//     std::ifstream inputFile("input.txt");
+//     if (!inputFile.is_open())
+//     {
+//         std::cerr << "Failed to open the Input file." << std::endl;
+//         exit(EXIT_FAILURE);
+//     }
+//     std::string line;
+//     std::getline(inputFile, line);
+//     while (std::getline(inputFile, line))
+//     {
+//         // bitc.insert(std::pair<std::string, double>(line.substr(0, 10), std::stod(line.substr(12, (line.length() - 11)))));
+//         // std::cout << line << std::endl;
+//         size_t pos = line.find("|");
+//         if (pos != std::string::npos)
+//         {
+//             std::string date = line.substr(0, pos);
+//             double value = std::stod(line.substr(pos + 2));
+//             input[date] = value;
+//         }
+//     }
+//     inputFile.close();
 // }
 
-// void BitcoinExchange::setMap(std::string date, int price)
+// int BitcoinExchange::wrongDate(std::string date)
 // {
-//     _bitcoin.insert(std::pair<std::string, int>(date, price));
-// }
-
-// std::map<std::string, int>::iterator getIter(void)
-// {
-//     return(_iter);
+//     int toComp;
+//     if(date.length() != 10)
+//         return(1);
+//     toComp = date.substr(0, 2);
+//     else if(toComp > 30 || toComp < 0)
+//         return(1);
 // }
