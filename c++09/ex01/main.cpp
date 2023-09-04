@@ -18,7 +18,7 @@ int performOperation(char op, int a, int b) {
         case '/':
         if(b == 0)
         {
-            std::cout << "Can't devide by 0" << std::endl;
+            std::cout << "Can't devide by 0" << std::endl << "ERROR" << std::endl;
             exit(1);
         }
         else
