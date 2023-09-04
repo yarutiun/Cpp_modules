@@ -3,6 +3,8 @@
 #include <iostream>
 #include <map>
 #include <iterator>
+#include <fstream>
+#include <string>
 
 class  BitcoinExchange{
     public:
@@ -10,7 +12,8 @@ class  BitcoinExchange{
         ~BitcoinExchange();
         BitcoinExchange(const BitcoinExchange &bx);
         const BitcoinExchange& operator=(const BitcoinExchange &bx);
-        std::map<std::string, int> _bitcoin;
-        std::map<std::string, int>::iterator _iter;
+        std::map<std::string, double> _bitcoin;
+        std::map<std::string, double>::iterator _iter;
+        void readFromBase(std::map<std::string, double> &_bitcoin);
     private:
 };
