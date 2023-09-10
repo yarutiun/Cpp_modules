@@ -71,25 +71,35 @@ void BitcoinExchange::validateInput(void)
     while (std::getline(inputFile, line))
     {
         if(line.find('|') == std::string::npos)
-            {
+        {
                 std::cout << "WRONG FORMAT" << std::endl;
                 exit(EXIT_FAILURE);
-            }
+        }
         if(std::stod(line.substr(12, (line.length() - 11))) > 1000)
-            {
+        {
                 std::cout << "NUMBER TOO BIG" << std::endl;
                 exit(EXIT_FAILURE);
-            }
+        }
         if(std::stod(line.substr(12, (line.length() - 11))) < 0)
-            {
+        {
                 std::cout << "NUMBER TOO SMALL" << std::endl;
                 exit(EXIT_FAILURE);
-            }
-        if(!std::stoi(line.substr(0, 4)))
-            {
-                std::cout << "NOT VALID DATE" << std::endl;
+        }
+        if(std::stoi(line.substr(5, 6)) > 12 || std::stoi(line.substr(5, 6)) < 1)
+        {
+                std::cout << "NOT VALID MONTH" << std::endl;
                 exit(EXIT_FAILURE);
-            }
+        }
+        if(std::stoi(line.substr(8, 9)) > 31 || std::stoi(line.substr(8, 9)) < 1)
+        {
+                std::cout << "NOT VALID DAY" << std::endl;
+                exit(EXIT_FAILURE);
+        }
+        if(line[4] != '-' || line[7] != '-')
+        {
+            std::cout << "WRONG DATE FORMAT" << std::endl;
+            exit(EXIT_FAILURE);
+        }
     }
     inputFile.close();
 }
