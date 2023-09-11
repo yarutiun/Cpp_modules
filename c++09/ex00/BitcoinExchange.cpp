@@ -44,7 +44,7 @@ void BitcoinExchange::readFromBase(std::map<std::string, double> &bitc)
     baseFile.close();
 }
 
-void BitcoinExchange::readFromInput(std::map<std::string, double> &input)
+void BitcoinExchange::readFromInput(std::multimap<std::string, double> &input)
 {
     
     std::ifstream inputFile(_fileName);
@@ -59,6 +59,7 @@ void BitcoinExchange::readFromInput(std::map<std::string, double> &input)
     {
         validateInput();
         input.insert(std::pair<std::string, double>(line.substr(0, 10), std::stod(line.substr(12, (line.length() - 11)))));
+            std::cout << line.substr(0, 10) << " " << std::stod(line.substr(12, (line.length() - 11))) << std::endl;
     }
     inputFile.close();
 }
@@ -104,16 +105,33 @@ void BitcoinExchange::validateInput(void)
     inputFile.close();
 }
 
+// void BitcoinExchange::change(void)
+// {
+//     double val1, val2;
+//     for (_iter = _ownInput.begin(); _iter != _ownInput.end(); ++_iter)
+//     {
+//         if (_bitcoin.find(_iter->first) != _bitcoin.end())
+//         {
+//             val1 = _bitcoin[_iter->first];
+//             val2 = _ownInput[_iter->first];
+//             std::cout << _iter->first << " => " << val2 << " = " << val1 * val2 << std::endl;
+//         }
+//     } //duplicates don't work
+// }
+
 void BitcoinExchange::change(void)
 {
     double val1, val2;
     for (_iter = _ownInput.begin(); _iter != _ownInput.end(); ++_iter)
     {
-        if (_bitcoin.find(_iter->first) != _bitcoin.end()) {
-            commonKeys.push_back(_iter->first);
-            val1 = _bitcoin[_iter->first];
-            val2 = _ownInput[_iter->first];
+        // Find all matching keys in _bitcoin
+        std::pair<std::multimap<std::string, double>::iterator, std::multimap<std::string, double>::iterator> range = _bitcoin.equal_range(_iter->first);
+
+        for (std::multimap<std::string, double>::iterator it = range.first; it != range.second; ++it)
+        {
+            val1 = it->second;
+            val2 = _iter->second;
             std::cout << _iter->first << " => " << val2 << " = " << val1 * val2 << std::endl;
         }
-    } //duplicates don't work
+    }
 }

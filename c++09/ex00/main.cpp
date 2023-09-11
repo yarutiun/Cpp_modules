@@ -2,19 +2,20 @@
 
 int main(int argc, char **argv)
 {
-    BitcoinExchange btc(argv[1]);
     
     if(argc == 2)
     {
+        BitcoinExchange btc(argv[1]);
         btc.readFromBase(btc._bitcoin);
+        btc._iter = btc._ownInput.begin();
+        // std::cout << btc._iter->first << btc._iter->second << std::endl;
+        // for(btc._iter = btc._ownInput.begin(); btc._iter != btc._bitcoin.end(); btc._iter++)
+        // {
+        //     std::cout << btc._iter->first << btc._iter->second << std::endl;
+        // }
         btc.readFromInput(btc._ownInput);
         btc.change();
-        // if (!btc.commonKeys.empty()) {
-        std::cout << "Common keys between the two maps:" << std::endl;
-        for (std::vector<std::string>::const_iterator it = btc.commonKeys.begin(); it != btc.commonKeys.end(); ++it)
-        {
-            std::cout << *it << std::endl;
-        }
+        // std::cout << "Common keys between the two maps:" << std::endl;
         return(0);
     }
     std::cout << "input should have 2 parameters" << std::endl;
